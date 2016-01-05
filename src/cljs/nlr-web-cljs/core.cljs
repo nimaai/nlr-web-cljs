@@ -1,3 +1,4 @@
-(ns nlr-web-cljs.core)
+(ns nlr-web-cljs.core
+  (:require [nlr-core]))
 
-(.write js/document "Hello, ClojureScript!")
+(.write js/document (.getEnglishName js/nlrCore 0))

@@ -24,6 +24,12 @@
                            ;; minimal JS optimization directive
                            :optimizations :whitespace
 
+                           ; Adds dependencies on foreign libraries. Be sure that the url returns a HTTP Code 200
+                           ; Defaults to the empty vector [].
+                           :foreign-libs [{:file "https://raw.githubusercontent.com/nimaai/nlr-core/fix-dist-format/dist/main.js"
+                                           :provides ["nlr-core"]
+                                           :module-type :commonjs}]
+
                            ;; generated JS code prettyfication
                            :pretty-print true}}]}
   ;; to clean JS files generated during the build
