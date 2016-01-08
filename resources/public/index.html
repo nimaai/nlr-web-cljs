@@ -18,7 +18,7 @@
     <!-- Custom CSS -->
     <link href="css/one-page-wonder.css" rel="stylesheet">
 
-    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/dist.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -32,10 +32,7 @@
     <!-- Navigation -->
     <header class="navbar navbar-inverse navbar-static-top">
       <div class="container">
-        <ul class="nav navbar-nav navbar-left">
-          <li>
-            <strong id="current-time" class="navbar-brand"></strong>
-          <li>
+        <ul id="current-time" class="nav navbar-nav navbar-left">
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li>
@@ -110,5 +107,9 @@
         </div>
       </footer>
     </div>
+
+    <script type="text/javascript">
+      nlr_web_cljs.core.run();
+    </script>
   </body>
 </html>

@@ -53424,4 +53424,22 @@ goog.provide("nlr_web_cljs.core");
 goog.require("cljs.core");
 goog.require("module$https_$raw_githubusercontent_com$nimaai$nlr_core$fix_dist_format$dist$main");
 goog.require("reagent.core");
-document.write(nlrCore.getEnglishName(0));
+if (typeof nlr_web_cljs.core.timer !== "undefined") {
+} else {
+  nlr_web_cljs.core.timer = reagent.core.atom.call(null, new Date);
+}
+if (typeof nlr_web_cljs.core.time_updater !== "undefined") {
+} else {
+  nlr_web_cljs.core.time_updater = setInterval(function() {
+    return cljs.core.reset_BANG_.call(null, nlr_web_cljs.core.timer, new Date);
+  }, 1E3);
+}
+nlr_web_cljs.core.current_time = function nlr_web_cljs$core$current_time() {
+  var time_str = cljs.core.first.call(null, clojure.string.split.call(null, cljs.core.deref.call(null, nlr_web_cljs.core.timer).toTimeString(), " "));
+  return new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "ul.nav.navbar-nav.navbar-lef", "ul.nav.navbar-nav.navbar-lef", 485862813), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "li", "li", 723558921), new cljs.core.PersistentVector(null, 2, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Keyword(null, "strong.navbar-brand", "strong.navbar-brand", 1497631156), 
+  time_str], null)], null)], null);
+};
+nlr_web_cljs.core.run = function nlr_web_cljs$core$run() {
+  return reagent.core.render.call(null, new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [nlr_web_cljs.core.current_time], null), document.getElementById("current-time"));
+};
+goog.exportSymbol("nlr_web_cljs.core.run", nlr_web_cljs.core.run);
