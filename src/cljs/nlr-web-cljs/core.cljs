@@ -1,10 +1,10 @@
 (ns nlr-web-cljs.core
-  (:require [nlr-core]))
+  (:require [nlr-core]
+            [domina :as d]))
 
 (enable-console-print!)
 
-(defonce index (.getLilaIndex js/nlrCore (js/Date.)))
-(println index)
+(println (d/text (d/by-id "index")))
 
 ; (defonce timer (r/atom (js/Date.)))
 

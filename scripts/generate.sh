@@ -12,6 +12,7 @@ template = handlebars.compile(fileContent)
 
 for i in [0..7]
   templateValues =
+    index: i
     sanskritName: nlrCore.getSanskritName(i)
     englishName: nlrCore.getEnglishName(i)
     timeInterval: nlrCore.time.formatTimeInterval(nlrCore.getTimeInterval(i))
@@ -23,4 +24,3 @@ for i in [0..7]
   fs.writeFile \
     "../resources/public/#{nlrCore.getSanskritName(i).toLowerCase()}.html",
     template(templateValues)
-  
