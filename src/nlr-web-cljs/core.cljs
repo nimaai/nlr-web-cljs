@@ -4,7 +4,10 @@
 
 (enable-console-print!)
 
-(println (d/text (d/by-id "index")))
+(defonce index (js.parseInt (d/text (d/by-id "index"))))
+
+(if-not (= (.getLilaIndex js/nlrCore (js/Date.)) index)
+  (println "not current lila"))
 
 ; (defonce timer (r/atom (js/Date.)))
 

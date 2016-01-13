@@ -9,23 +9,24 @@
 
   :dependencies [[domina "1.0.3"]
                  [org.clojure/clojure "1.7.0"]
-                 [org.clojure/clojurescript "1.7.145"]
+                 [org.clojure/clojurescript "1.7.170"]
                  [reagent "0.6.0-alpha"]]
 
-  :plugins [[lein-cljsbuild "1.1.0"]]
+  :plugins [[lein-cljsbuild "1.1.0"]
+            [lein-figwheel "0.5.0-2"]]
 
   ;; cljsbuild options configuration
   :cljsbuild {:builds
               [{;; CLJS source code path
-                :source-paths ["src/cljs"]
-
+                :source-paths ["src/"]
+                :figwheel true
                 ;; Google Closure (CLS) options configuration
                 :compiler {:main "nlr-web-cljs.core"
                            :output-to "resources/public/js/dist.js"
                            :output-dir "resources/public/js/out"
                            :asset-path "js/out"
                            :optimizations :none
-                           :foreign-libs [{:file "https://raw.githubusercontent.com/nimaai/nlr-core/fix-dist-format/dist/main-without-data.js"
+                           :foreign-libs [{:file "node_modules/nlr-core/dist/main-without-data.js"
                                            :provides ["nlr-core"]}]
                            :pretty-print true}}]}
 
