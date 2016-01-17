@@ -1,13 +1,16 @@
-(ns nlr-web-cljs.core
-  (:require [nlr-core]
+(ns nlr-web-cljs.main
+  (:require [nlr-web-cljs.nlr-core :as core]
             [domina :as d]))
 
 (enable-console-print!)
 
 (defonce index (js.parseInt (d/text (d/by-id "index"))))
 
-(if-not (= (.getLilaIndex js/nlrCore (js/Date.)) index)
-  (println "not current lila"))
+; (if-not (= (core/get-current-index) index)
+;   (println "not current lila"))
+
+(println index)
+(println (core/get-current-index))
 
 ; (defonce timer (r/atom (js/Date.)))
 

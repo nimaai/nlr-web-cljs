@@ -21,13 +21,13 @@
                 :source-paths ["src/"]
                 :figwheel true
                 ;; Google Closure (CLS) options configuration
-                :compiler {:main "nlr-web-cljs.core"
+                :compiler {:main "nlr-web-cljs.main"
                            :output-to "resources/public/js/dist.js"
                            :output-dir "resources/public/js/out"
                            :asset-path "js/out"
                            :optimizations :none
-                           :foreign-libs [{:file "node_modules/nlr-core/dist/main-without-data.js"
-                                           :provides ["nlr-core"]}]
+                           :foreign-libs [{:file "node_modules/nlr-core/dist/main-limited.js"
+                                           :provides ["js-nlr-core"]}]
                            :pretty-print true}}]}
 
   ;; to clean JS files generated during the build
