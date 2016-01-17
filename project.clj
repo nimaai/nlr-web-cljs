@@ -26,7 +26,7 @@
                            :output-dir "resources/public/js/out"
                            :asset-path "js/out"
                            :optimizations :none
-                           :foreign-libs [{:file "node_modules/nlr-core/dist/main-limited.js"
+                           :foreign-libs [{:file "node_modules/nlr-core/dist/cljs/main-limited.js"
                                            :provides ["js-nlr-core"]}]
                            :pretty-print true}}]}
 

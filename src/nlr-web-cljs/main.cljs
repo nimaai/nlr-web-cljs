@@ -1,31 +1,42 @@
 (ns nlr-web-cljs.main
-  (:require [nlr-web-cljs.nlr-core :as core]
-            [domina :as d]))
+  (:require [domina :as d]
+            [nlr-web-cljs.nlr-core :as core]
+            [reagent.core :as r]))
 
 (enable-console-print!)
 
-(defonce index (js.parseInt (d/text (d/by-id "index"))))
+(defonce index (js.parseInt
+                 (d/text
+                   (d/by-id "index"))))
 
-; (if-not (= (core/get-current-index) index)
-;   (println "not current lila"))
+(defonce current-index (r/atom
+                         (core/current-index (js/Date.))))
 
-(println index)
-(println (core/get-current-index))
+(defonce timer (r/atom (js/Date.)))
 
-; (defonce timer (r/atom (js/Date.)))
+(defonce time-updater (js/setInterval
+                        #(let [date (js/Date.)]
+                           (do (reset! timer date)
+                               (reset! current-index
+                                       (core/current-index date))))
+                        1000))
 
-; (defonce time-updater (js/setInterval
-;                        #(reset! timer (js/Date.)) 1000))
+(defn now-info []
+  (let [current-index @current-index]
+    (if (= current-index index)
+      (-> @timer
+          .toTimeString
+          (clojure.string/split " ")
+          first)
+      [:a {:href (str (.toLowerCase
+                        (core/sanskrit-name current-index))
+                      ".html")}
+       "Go to now"])))
 
-; (defn current-time []
-;   (let [time-str (-> @timer
-;                      .toTimeString
-;                      (clojure.string/split " ")
-;                      first)]
-;     [:ul.nav.navbar-nav.navbar-lef
-;      [:li
-;       [:strong.navbar-brand time-str]]]))
+(defn now-info-component []
+  [:li
+   [:strong.navbar-brand (now-info)]])
 
-; (defn ^:export run []
-;   (r/render [current-time]
-;             (js/document.getElementById "current-time")))
+(defn ^:export run []
+  (r/render [now-info-component]
+            (d/by-id "current-time")))
