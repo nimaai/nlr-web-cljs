@@ -45,17 +45,22 @@ var nlrCore =
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var timeIntervals;
+	var sanskritNames, timeIntervals;
 
 	timeIntervals = __webpack_require__(1);
 
+	sanskritNames = __webpack_require__(2);
+
 	module.exports = {
-	  getLilaIndex: __webpack_require__(2).getLilaIndex,
-	  getLilaProgress: __webpack_require__(4).getLilaProgress,
+	  getLilaIndex: __webpack_require__(3).getLilaIndex,
+	  getLilaProgress: __webpack_require__(5).getLilaProgress,
 	  getTimeInterval: function(i) {
 	    return timeIntervals[i];
 	  },
-	  time: __webpack_require__(3)
+	  getSanskritName: function(i) {
+	    return sanskritNames[i];
+	  },
+	  time: __webpack_require__(4)
 	};
 
 
@@ -148,12 +153,27 @@ var nlrCore =
 
 /***/ },
 /* 2 */
+/***/ function(module, exports) {
+
+	module.exports = [
+		"Nisha",
+		"Nishanta",
+		"Prataha",
+		"Purvahna",
+		"Madhyahna",
+		"Aparahna",
+		"Shayana",
+		"Pradosha"
+	];
+
+/***/ },
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports.getLilaIndex = function(d) {
 	  var bh, bm, eh, em, getDayTimeInMinutes, i, index, j, timeIntervals, timeNowInMinutes;
 	  timeIntervals = __webpack_require__(1);
-	  getDayTimeInMinutes = __webpack_require__(3).getDayTimeInMinutes;
+	  getDayTimeInMinutes = __webpack_require__(4).getDayTimeInMinutes;
 	  timeNowInMinutes = getDayTimeInMinutes(d.getHours(), d.getMinutes());
 	  index = 0;
 	  for (i = j = 0; j <= 7; i = ++j) {
@@ -171,7 +191,7 @@ var nlrCore =
 
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports) {
 
 	var formatTime;
@@ -200,14 +220,14 @@ var nlrCore =
 
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports.getLilaProgress = function(d) {
 	  var after_midnight, before_midnight, bh, bm, eh, elapsedTimeInMinutes, em, getDayTimeInMinutes, i, lilaSpanInMinutes, timeIntervals, timeNowInMinutes;
 	  timeIntervals = __webpack_require__(1);
-	  getDayTimeInMinutes = __webpack_require__(3).getDayTimeInMinutes;
-	  i = __webpack_require__(2).getLilaIndex(d);
+	  getDayTimeInMinutes = __webpack_require__(4).getDayTimeInMinutes;
+	  i = __webpack_require__(3).getLilaIndex(d);
 	  bh = timeIntervals[i][0][0];
 	  bm = timeIntervals[i][0][1];
 	  eh = timeIntervals[i][1][0];
